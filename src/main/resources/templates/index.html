@@ -1,14 +1,95 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <title>Blok Crawler</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <a href='/startCrawler'>
-        <button>startCrawler</button>
-    </a>
-</body>
+    <div class="weather-app">
 
+        <div class="container">
+            <h3 class="brand">The Weather</h3>
+            <div>
+                <h1 class="temp" th:text="${weatherResponse.main.temp} + '&#176'"></h1>
+                <div class="city-time">
+                    <h1 class="name" th:text="${weatherResponse.name}"></h1>
+                    <small>
+                        <span class="time" th:text="${time}"></span>
+                        -
+                        <span class="date" th:text="${dayOfWeek + ' ' + month + ' ' + dayOfMonth}"></span>
+                    </small>
+                </div>
+                <div class="weather">
+                    <img th:src="@{${'https://openweathermap.org/img/wn/' + weatherResponse.weather[0].icon + '@2x.png'}}" class="icon" alt="icon" width="50" height="50">
+                    <span class="condition" th:text="${weatherResponse.weather[0].description}"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel">
+
+            <form id="locationInput" action="#">
+                <input type="text" class="search" id="location" name="location" placeholder="Search Location..." required/>
+                <button type="submit" class="submit">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+
+            <ul class="details">
+                <h4>Weather Details</h4>
+
+                 <li>
+                    <span>Feels Like -</span>
+                    <span class="feels_like" th:text="${weatherResponse.main.feels_like} + '&#176'"></span>
+                 </li>
+                 <li>
+                    <span>Temp Min -</span>
+                    <span class="temp_min" th:text="${weatherResponse.main.temp_min} + '&#176'"></span>
+                 </li>
+                 <li>
+                    <span>Temp Max -</span>
+                    <span class="temp_max" th:text="${weatherResponse.main.temp_max} + '&#176'"></span>
+                 </li>
+
+
+                 <li>
+                    <span>Pressure -</span>
+                    <span class="pressure" th:text="${weatherResponse.main.pressure}"></span>
+                 </li>
+
+
+                <li>
+                   <span>Sky -</span>
+                   <span class="cloud" th:text="${weatherResponse.weather[0].description}"></span>
+                </li>
+                
+
+                <li>
+                    <span>Humidity -</span>
+                    <span class="humidity" th:text="${weatherResponse.main.humidity} + ' %'"></span>
+                 </li>
+
+
+                 <li>
+                    <span>Wind Speed -</span>
+                    <span class="wind" th:text="${weatherResponse.wind.speed} + ' km/h'"></span>
+                 </li>
+                 <li>
+                    <span>Direction of wind -</span>
+                    <span class="wind" th:text="${weatherResponse.wind.deg} + '&#176'"></span>
+                 </li>
+                 <li>
+                    <span>Wind Gust -</span>
+                    <span class="wind" th:text="${weatherResponse.wind.gust} + ' km/h'"></span>
+                 </li>
+
+                 
+            </ul>
+        </div>
+
+    </div>
+</body>
 </html>

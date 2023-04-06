@@ -1,12 +1,12 @@
-package com.BlokCrawler.BlokCrawler;
+package com.Weather.Weather;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BlokCrawlerApplication {
+public class WeatherApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BlokCrawlerApplication.class, args);
+		SpringApplication.run(WeatherApplication.class, args);
 	}
 }
